@@ -4,17 +4,13 @@ import com.blog.demo.model.BlogPost
 import com.blog.demo.model.Comment
 import com.blog.demo.model.User
 import com.blog.demo.repository.BlogPostRepository
-import com.blog.demo.repository.CommentsRepository
+
 import com.blog.demo.service.BlogPostService
 import com.blog.demo.service.SecurityService
 import com.blog.demo.service.UserService
 import com.blog.demo.validator.UserValidator
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.mongodb.core.MongoTemplate
-import org.springframework.data.mongodb.core.query.Criteria
-import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.mongodb.core.query.Update
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.context.SecurityContextHolder
@@ -49,9 +45,6 @@ class BlogController {
 
     @Autowired
     UserValidator userValidator
-
-    @Autowired
-    CommentsRepository commentsRepository
 
 
     @ModelAttribute("currentUser")
