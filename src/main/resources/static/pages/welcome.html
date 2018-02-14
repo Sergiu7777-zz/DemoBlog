@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome</title>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}"/>
+</head>
+
+<body>
+<div class="button-group" sec:authorize="!isFullyAuthenticated()">
+    <p align="left" th:inline="text">Welcome guest | <a href="/login">Login</a> | <a href="/register">Register</a></p>
+</div>
+<div class="button-group" sec:authorize="isFullyAuthenticated()">
+    <h3 align="left" th:inline="text">Welcome <span th:text="${currentUser} "></span></h3>
+
+    <ul>
+        <li><a href="/posts">Goto Blog Home</a></li>
+        <li>
+            <a href="/logout">Logout</a>
+        </li>
+        <li>
+            <a href="/newPost">Create a New Post</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

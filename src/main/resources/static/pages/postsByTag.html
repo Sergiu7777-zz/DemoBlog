@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Posts by tag</title>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}"/>
+</head>
+
+<body>
+<p align="left" th:inline="text">Welcome <span th:text="${currentUser} "></span>
+    &nbsp; &nbsp;<a href="/logout">Logout</a> | <a href="/newPost">New Post</a> | <a href="/posts">Blog home</a></p>
+
+<h1>My Blog</h1>
+
+<th:block th:each="post:*{postsByTag}">
+    <a th:href="@{/posts/{permalink}(permalink=${post.permalink})}">
+        <h2 th:text="${post.title}"></h2>
+    </a>
+
+    <em>Posted</em> <span th:text="${#dates.format(post.date, 'dd MMM yyyy HH:mm:ss zzz')}"></span> <em>by</em> <span th:text="${post.author}"></span>
+    <p th:utext="${post.body}"></p>
+
+    <em>Filed under:</em>
+    <div style="display: inline" th:each="tag:*{post.tags}">
+        <a th:href="@{/tag/{tag}(tag=${tag})}" th:text="${tag} "></a>
+    </div>
+    <br/><br/>
+    <em>Comments:</em><a th:href="@{/posts/{permalink}(permalink=${post.permalink})}" th:text="${#lists.size(post.comments)}">[Comments size]</a>
+</th:block>
+
+</body>
+</html>

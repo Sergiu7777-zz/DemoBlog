@@ -1,0 +1,63 @@
+.container {
+    margin: 75px auto;
+    margin-top: 0;
+    max-height: 60px;
+    width: 90%;
+    max-width: 1000px;
+    padding: 0 20px 100px;
+    /*border: 1px #000 solid;*/
+}
+
+.login {
+    margin: 100px auto;
+    width: 400px;
+    height: auto;
+    padding: 40px;
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 15px;
+    text-align: center;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-button {
+    background-color: #8e0000;
+    color: white;
+    padding: 14px 20px;
+    margin: 20px 0 0 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.deleteEditBtn {
+    border: 1px solid dimgray;
+    border-radius: 5px;
+}
+
+.table, .table-striped {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.link {
+    text-decoration-line: unset;
+}
+
+.link:hover {
+    color: red;
+}

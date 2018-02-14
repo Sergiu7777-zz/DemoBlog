@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Post</title>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}"/>
+</head>
+
+<body>
+<h1 align="left" th:inline="text">Welcome <span th:text="${currentUser} "></span></h1>
+<a href="/logout">Logout</a> | <a href="/newPost">New Post</a> |
+<a href="/posts">Blog Home</a><br/><br/>
+
+<th:block th:each="post:${postPermalink}">
+    <h2><span th:text="${post.title}"></span></h2>
+    Posted <span th:text="${#dates.format(post.date, 'dd MMM yyyy HH:mm:ss zzz')}"></span> by <span th:text="${post.author}"></span>
+    <p th:utext="${post.body}"></p>
+
+    <em>Filed under:</em>
+    <div style="display: inline" th:each="tag:*{post.tags}">
+        <a th:href="@{/tag/{tag}(tag=${tag})}" th:text="${tag} "></a>
+    </div>
+    <br/><br/><br/>
+    <em><h3>Comments:</h3></em>
+    <div th:each="comment:*{post.comments}">
+        <p th:text="*{comment.body}"></p>
+        <strong><span th:text="*{comment.author}"></span></strong>
+        &nbsp;<span th:text="'(' + *{comment.email} + ')'"></span>
+        <br/><br/>
+    </div>
+
+<br/>
+<h2><em>Add a comment</em></h2>
+<div>
+    <form method="post" th:object="${commentForm}" th:action="@{/posts/{permalink}(permalink=${post.permalink})}">
+
+        <div class="form-group">
+            <label for="author"><strong>Name</strong> (required)</label>
+            <div>
+                <input type="text" size="40" id="author" th:field="*{author}" required="required"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="body"><strong>Comment</strong> (required)</label>
+            <div>
+                <textarea type="text" rows="7" cols="40" id="body" th:field="*{body}" required="required"></textarea>
+            </div>
+        </div>
+
+        <div>
+            <label for="email"><strong>Email</strong> (required)</label>
+            <div>
+                <input type="email" size="40" id="email" th:field="*{email}" required="required"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Send comment</button>
+        </div>
+    </form>
+</div>
+</th:block>
+
+</body>
+</html>
