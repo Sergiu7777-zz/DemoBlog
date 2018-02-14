@@ -35,9 +35,9 @@
         </div>
 
         <div class="form-group">
-            <label for="email"><h3>Email (optional)</h3></label>
+            <label for="email"><h3>Email</h3></label>
             <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-                <input type="email" size="30" id="email" th:field="*{email}"/>
+                <input type="email" size="30" id="email" th:field="*{email}" required="required"/>
             </div>
         </div>
 
